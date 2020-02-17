@@ -50,7 +50,7 @@ namespace CadastroDePacientesBe3
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+          
 
             app.UseMvc(routes =>
             {
