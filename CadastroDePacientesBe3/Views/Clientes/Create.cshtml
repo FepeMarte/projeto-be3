@@ -4,89 +4,125 @@
     ViewData["Title"] = "Cadastro";
 }
 
-<h2>Create</h2>
+<h2 class="formatar">Cadastrar</h2>
 
-<h4>Felipe Marcel de Paula Duarte</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Prontuario" class="control-label"></label>
-                <input asp-for="Prontuario" class="form-control" />
+
+
+<section class="container-fluid">
+
+    <form asp-action="Create" asp-controller="Clientes">
+
+        <div class="row">
+            <div class="col">
+                <label class="formatar" for="Prontuario">Prontuário</label>
+                <input asp-for="Prontuario" type="number" class="form-control" placeholder="Prontuário">
                 <span asp-validation-for="Prontuario" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
+            <div class="col">
+                <label class="formatar" for="Cpf">CPF</label>
+                <input asp-for="Cpf" type="number" class="form-control" placeholder="999.999.999-99">
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col">
+                <label class="formatar" for="Nome">Nome</label>
+                <input asp-for="Nome" type="text" class="form-control" placeholder="Nome">
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Sobrenome" class="control-label"></label>
-                <input asp-for="Sobrenome" class="form-control" />
+            <div class="col">
+                <label class="formatar" for="Nome">Sobrenome</label>
+                <input asp-for="Sobrenome" type="text" class="form-control" placeholder="Sobrenome">
                 <span asp-validation-for="Sobrenome" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DtNasc" class="control-label"></label>
-                <input asp-for="DtNasc" class="form-control" />
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col">
+                <label class="formatar" for="DtNasc">Nascimento</label>
+                <input asp-for="DtNasc" type="date" class="form-control">
                 <span asp-validation-for="DtNasc" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Rg" class="control-label"></label>
-                <input asp-for="Rg" class="form-control" />
+            <div class="col">
+                <label class="formatar" for="Rg">RG</label>
+                <input asp-for="Rg" type="text" class="form-control" placeholder="99.99.99.99-9">
                 <span asp-validation-for="Rg" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Cpf" class="control-label"></label>
-                <input asp-for="Cpf" class="form-control" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
+            <div class="col">
+                <label class="formatar" for="Sexo">Sexo</label>
+                <div class="form-inline">
+                    <input asp-for="Sexo" type="radio" id="masc" name="genero" value="masculino">
+                    <label>Masculino</label>&nbsp;
+                    <input asp-for="Sexo" type="radio" id="femi" name="genero" value="feminino">
+                    <label >Feminino</label><br>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Sexo" class="control-label"></label>
-                <input asp-for="Sexo" class="form-control" />
-                <span asp-validation-for="Sexo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FoneRes" class="control-label"></label>
-                <input asp-for="FoneRes" class="form-control" />
-                <span asp-validation-for="FoneRes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+        </div>
+        <br />
+
+
+        <div class="row">
+            <div class="col">
+                <label class="formatar" for="Email">Email</label>
+                <input asp-for="Email" type="email" class="form-control" placeholder="Email">
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="IdConvenio" class="control-label"></label>
-                <input asp-for="IdConvenio" class="form-control" />
-                <span asp-validation-for="IdConvenio" class="text-danger"></span>
+            <div class="col">
+                <label class="formatar" for="FoneRes">Telefone</label>
+                <input asp-for="FoneRes" type="text" class="form-control" placeholder="(99) 9999-9999">
+                <span asp-validation-for="FoneRes" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="NCarteirinha" class="control-label"></label>
-                <input asp-for="NCarteirinha" class="form-control" />
-                <span asp-validation-for="NCarteirinha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Celular" class="control-label"></label>
-                <input asp-for="Celular" class="form-control" />
+            <div class="col">
+                <label class="formatar" for="Celular">Celular</label>
+                <input asp-for="Celular" type="text" class="form-control" placeholder="(99) 99999-9999">
                 <span asp-validation-for="Celular" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="NomeMae" class="control-label"></label>
-                <input asp-for="NomeMae" class="form-control" />
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col">
+                <label class="formatar" for="idConvenio">Convênio</label>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Selecionar...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <label class="formatar" for="NCarteirinha">Nº Carteirinha</label>
+                <input asp-for="NCarteirinha" type="number" class="form-control" >
+                <span asp-validation-for="NCarteirinha" class="text-danger"></span>
+
+            </div>
+        </div>
+   
+        <div class="row">
+            <div class="col">
+                <label class="formatar" for="NomeMae">Nome da Mãe</label>
+                <input asp-for="NomeMae" type="text" class="form-control" placeholder="Nome">
                 <span asp-validation-for="NomeMae" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
+            
+        </div>
+        <br />
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div class="btn-group btn-block">
+            <a class="btn btn-secondary" asp-action="List">Voltar</a>&nbsp; &nbsp;
+            <button type="submit" class="btn greenB">Salvar</button>
+        </div>
+
+    </form>
+
+</section>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
