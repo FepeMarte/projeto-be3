@@ -48,23 +48,45 @@
                 <input asp-for="DtNasc" type="date" class="form-control">
                 <span asp-validation-for="DtNasc" class="text-danger"></span>
             </div>
-            <div class="col">
-                <label class="formatar" for="Rg">RG</label>
-                <input asp-for="Rg" type="text" class="form-control" placeholder="99.99.99.99-9">
-                <span asp-validation-for="Rg" class="text-danger"></span>
-            </div>
+
             <div class="col">
                 <label class="formatar" for="Sexo">Sexo</label>
                 <div class="form-inline">
-                    <input asp-for="Sexo" type="radio" id="masc" name="genero" value="masculino">
-                    <label>Masculino</label>&nbsp;
-                    <input asp-for="Sexo" type="radio" id="femi" name="genero" value="feminino">
-                    <label >Feminino</label><br>
+                    <input asp-for="Sexo" type="radio" id="masc" name="genero" value="masculino">&nbsp;
+                    <label>Masculino</label>&nbsp;&nbsp;
+                    <input asp-for="Sexo" type="radio" id="femi" name="genero" value="feminino">&nbsp;
+                    <label>Feminino</label><br>
                 </div>
             </div>
         </div>
         <br />
+        <div class="row">
+            <div class="col">
+                <label class="formatar" for="Rg">RG</label>
+                <input asp-for="Rg" type="number" class="form-control" placeholder="99.99.99.99-9">
+                <span asp-validation-for="Rg" class="text-danger"></span>
+            </div>
+            <div class="col">
+                <label class="formatar" for="idConvenio">Uf do RG</label>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="SelectUF">
+                        <option selected>Selecionar...</option>
 
+                        @{ 
+                            var number = 0;
+                            
+                            foreach (var item in ViewBag.States)
+                            {
+                                number++;
+                                <option value="@number.ToString()">@item</option>
+                            }
+                        }
+
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br />
 
         <div class="row">
             <div class="col">
@@ -89,7 +111,7 @@
             <div class="col">
                 <label class="formatar" for="idConvenio">Convênio</label>
                 <div class="input-group mb-3">
-                    <select class="custom-select" id="inputGroupSelect01">
+                    <select class="custom-select" id="SelectCon">
                         <option selected>Selecionar...</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -101,7 +123,11 @@
                 <label class="formatar" for="NCarteirinha">Nº Carteirinha</label>
                 <input asp-for="NCarteirinha" type="number" class="form-control" >
                 <span asp-validation-for="NCarteirinha" class="text-danger"></span>
-
+            </div>
+            <div class="col">
+                <label class="formatar" for="DtValidade">Validade</label>
+                <input asp-for="DtValidade" type="date" class="form-control">
+                <span asp-validation-for="DtValidade" class="text-danger"></span>
             </div>
         </div>
    
