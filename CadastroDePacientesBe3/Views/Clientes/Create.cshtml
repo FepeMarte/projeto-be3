@@ -3,7 +3,10 @@
 @{
     ViewData["Title"] = "Cadastro";
 }
-    <section class="container-fluid">
+
+
+<section class="container-fluid">
+
         @if (ViewBag.Error != "")
         {
             <span class="text-danger alinhar">@ViewBag.Error</span>
@@ -12,9 +15,6 @@
         <h2 class="formatar">Cadastrar</h2>
 
         <hr />
-
-
-
 
         <form asp-action="Create" asp-controller="Clientes">
 

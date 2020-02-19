@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CadastroDePacientesBe3.Models;
+using CadastroDePacientesBe3.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CadastroDePacientesBe3.Controllers
 {
     public class ClientesController : Controller
     {
-        private readonly DB5566Context _context;
-        public ClientesController(DB5566Context context)
+        private readonly ClientesService _clientesService;
+        
+        public ClientesController(ClientesService clienteService)
         {
-            _context = context;
+            _clientesService = clienteService;
         }
 
         
@@ -20,7 +22,7 @@ namespace CadastroDePacientesBe3.Controllers
         public IActionResult Create()
         {
             ViewBag.States = GetStates();
-            ViewBag.Convenios = GetAll();
+            ViewBag.Convenios = _clientesService.GetConvenios();
             ViewBag.Error = "";
 
             return View();
@@ -30,17 +32,16 @@ namespace CadastroDePacientesBe3.Controllers
         public IActionResult Create(Clientes client)
         {
             ViewBag.States = GetStates();
-            ViewBag.Convenios = GetAll();
+            ViewBag.Convenios = _clientesService.GetConvenios();
 
             if (ModelState.IsValid)
             {
-                Clientes cli = _context.Clientes.FirstOrDefault(c => c.Cpf == client.Cpf);
+                Clientes cli = _clientesService.GetClientByCpf(client.Cpf);
 
                 if (cli == null)
                 {
                     //salvar cliente
-                    _context.Add(client);
-                    _context.SaveChanges();
+                    _clientesService.Insert(client);
 
                     return RedirectToAction("List");
                 }
@@ -58,27 +59,40 @@ namespace CadastroDePacientesBe3.Controllers
         [HttpGet]
         public IActionResult List()
         {
-            return View();
+            var list = _clientesService.GetAllClients();
+
+            return View(list);
         }
 
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.States = GetStates();
+            ViewBag.Convenios = _clientesService.GetConvenios();
+            ViewBag.Error = "";
+
+            var client = _clientesService.GetClient(id);
+
+            return View(client);
         }
 
         [HttpPost]
         public IActionResult Edit(Clientes client)
         {
+            if (ModelState.IsValid)
+            {
+                _clientesService.Update(client);
+                return RedirectToAction("List");
+            }
+
             return View(client);
         }
 
-
-
-        public List<Convenios> GetAll()
-        {
-            return _context.Convenios.OrderBy(x => x.Empresa).ToList();
-        }
 
         public List<string> GetStates()
         {

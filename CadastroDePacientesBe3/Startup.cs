@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CadastroDePacientesBe3.Services;
 
 namespace CadastroDePacientesBe3
 {
@@ -31,6 +32,8 @@ namespace CadastroDePacientesBe3
                 options.UseSqlServer(Configuration.GetConnectionString("Conexao")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddScoped<ClientesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +57,7 @@ namespace CadastroDePacientesBe3
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Clientes}/{action=Create}/{id?}");
+                    template: "{controller=Clientes}/{action=List}/{id?}");
             });
         }
     }
