@@ -18,6 +18,7 @@ namespace CadastroDePacientesBe3.Models
         public string Sobrenome { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
+        [DataType(DataType.Date)]
         public DateTime DtNasc { get; set; }
         
         [Required(ErrorMessage = "Campo obrigatório!")]
@@ -34,7 +35,10 @@ namespace CadastroDePacientesBe3.Models
         [Required(ErrorMessage = "Campo obrigatório!")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório!")]
+        // public Convenios Convenios { get; set; }
+
+        [Display(Name = "IdConvenio")]
+        [Required(ErrorMessage = "Selecione o Convenio!")]
         public short? IdConvenio { get; set; }
         
         [Required(ErrorMessage = "Campo obrigatório!")]
@@ -45,10 +49,14 @@ namespace CadastroDePacientesBe3.Models
         [Required(ErrorMessage = "Campo obrigatório!")]
         public string NomeMae { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório!")]
-        public short? IdUF { get; set; }
         
+        [Display(Name = "UF")]
+        [Required(ErrorMessage = "Selecione a UF do RG")]
+        public string UF { get; set; }
+
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = "Campo obrigatório!")]
-        public DateTime DtValidade { get; set; }
+        
+        public DateTime? DtValidade { get; set; }
     }
 }

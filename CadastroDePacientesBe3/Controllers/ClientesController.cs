@@ -14,18 +14,45 @@ namespace CadastroDePacientesBe3.Controllers
         {
             _context = context;
         }
-     
+
+        
         [HttpGet]
         public IActionResult Create()
         {
             ViewBag.States = GetStates();
+            ViewBag.Convenios = GetAll();
+            ViewBag.Error = "";
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Clientes Cliente)
+        public IActionResult Create(Clientes client)
         {
-            return View(Cliente);
+            ViewBag.States = GetStates();
+            ViewBag.Convenios = GetAll();
+
+            if (ModelState.IsValid)
+            {
+                Clientes cli = _context.Clientes.FirstOrDefault(c => c.Cpf == client.Cpf);
+
+                if (cli == null)
+                {
+                    //salvar cliente
+                    _context.Add(client);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("List");
+                }
+                else
+                {
+                    ViewBag.Error = "Cliente já cadastrado!";
+                    return View(client);
+                }
+
+            }
+
+            return View(client);
         }
 
         [HttpGet]
@@ -34,12 +61,24 @@ namespace CadastroDePacientesBe3.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Clientes client)
+        {
+            return View(client);
+        }
 
 
 
-
-
-
+        public List<Convenios> GetAll()
+        {
+            return _context.Convenios.OrderBy(x => x.Empresa).ToList();
+        }
 
         public List<string> GetStates()
         {
