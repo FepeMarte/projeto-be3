@@ -5,11 +5,13 @@
 }
 
 
-<section class="container-fluid">
+    <section class="container-fluid">
 
         @if (ViewBag.Error != "")
         {
-            <span class="text-danger alinhar">@ViewBag.Error</span>
+            <div class="alert alert-danger formatar" role="alert">
+                @ViewBag.Error
+            </div>
         }
 
         <h2 class="formatar">Cadastrar</h2>
@@ -54,12 +56,14 @@
 
                 <div class="col">
                     <label class="formatar" for="Sexo">Sexo</label>
-                    <div class="form-inline">
-                        <input asp-for="Sexo" type="radio" id="M" name="Sexo" value="1" checked>&nbsp;
-                        <label>Masculino</label>&nbsp;&nbsp;
-                        <input asp-for="Sexo" type="radio" id="F" name="Sexo" value="2">&nbsp;
-                        <label>Feminino</label><br>
-                    </div>
+                    <fieldset class="form-control">
+                        <div class="form-inline">
+                            <input asp-for="Sexo" type="radio" id="M" name="Sexo" value="1" checked>&nbsp;
+                            <label>Masculino</label>&nbsp;&nbsp;
+                            <input asp-for="Sexo" type="radio" id="F" name="Sexo" value="2">&nbsp;
+                            <label>Feminino</label><br>
+                        </div>
+                    </fieldset>
                 </div>
             </div>
             <br />

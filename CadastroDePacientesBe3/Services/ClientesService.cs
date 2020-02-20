@@ -1,4 +1,5 @@
 ﻿using CadastroDePacientesBe3.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace CadastroDePacientesBe3.Services
         public List<Clientes> GetAllClients()
         {
 
-            var clients = _context.Clientes.ToList();
+            var clients =  _context.Clientes.ToList();
 
             return clients;
         }
@@ -47,10 +48,27 @@ namespace CadastroDePacientesBe3.Services
             _context.SaveChanges();
 
         }
-        public List<Convenios> GetConvenios()
+        public List<Convenios> GetAllConvenios()
         {
             return _context.Convenios.OrderBy(x => x.Empresa).ToList();
         }
 
+        public Convenios GetConvenioById(int? id)
+        {
+            return _context.Convenios.FirstOrDefault(c => c.IdConvenio == id);
+        }
+
+        public List<Clientes> GetAllClientsBySearch(string search)
+        {
+            int id;
+            bool sucess = Int32.TryParse(search, out id);
+            if (!sucess) id = 0;
+
+            var clients =  _context.Clientes
+                                .Where(c => c.Nome.Contains(search) || c.Prontuario == id || c.Cpf.Contains(search) || c.Email.Contains(search))
+                                .ToList();
+            return clients;    
+
+        }
     }
 }

@@ -1,0 +1,145 @@
+﻿@model CadastroDePacientesBe3.Models.ViewModel.Paciente
+
+@{
+    ViewData["Title"] = "Visualizar";
+}
+
+
+
+<section class="container-fluid">
+    <form class="form painel">
+        <div class="form-group">
+           
+            <div class="row">
+                <div class="col">
+                    <div class="greenL">@Model.Cliente.Nome</div>
+                </div>
+                <div class="col">
+                    <div class="greenD">@Model.Cliente.Sobrenome</div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">CPF:</div>
+                </div>
+                <div class="col">
+                    <div class="direita">@Model.Cliente.Cpf</div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">Nascimento:</div>
+                </div>
+                <div class="col">
+                    <div class="direita">
+                        @Model.Cliente.DtNasc
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">RG:</div>
+                </div>
+                <div class="col">
+                    <div class="direita">
+                        @Model.Cliente.Rg
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">Email:</div>
+                </div>
+                <div class="col">
+                    <div class="direita">
+                        @Model.Cliente.Email
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">Telefone:</div>
+                </div>
+                <div class="col">
+                    <div class="direita">
+                        @Model.Cliente.FoneRes
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">Celular:</div>
+                </div>
+                <div class="col">
+                    <div class="direita">
+                        @Model.Cliente.Celular
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">
+                        Nome da mãe:
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="direita">
+                        @Model.Cliente.NomeMae
+                    </div>
+                </div>
+
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">Convênio:</div>
+                </div>
+                <div class="col">
+                    <div class="direita">
+                        @Model.Convenio.Empresa
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">N° Carteirinha:</div>
+                </div>
+                <div class="col">
+                    <div class="direita">
+                        @Model.Cliente.NCarteirinha
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="esquerda">Validade:</div>
+                </div>
+                <div class="col">
+                    <div class="direita">@Model.Cliente.DtValidade</div>
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <div class="btn-group btn-block">
+            <a class="btn btn-secondary" asp-action="List">Voltar</a>
+            
+        </div>
+    </form>
+
+</section>
+

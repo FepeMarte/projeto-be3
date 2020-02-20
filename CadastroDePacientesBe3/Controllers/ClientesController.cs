@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CadastroDePacientesBe3.Models;
+using CadastroDePacientesBe3.Models.ViewModel;
 using CadastroDePacientesBe3.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,7 @@ namespace CadastroDePacientesBe3.Controllers
         public IActionResult Create()
         {
             ViewBag.States = GetStates();
-            ViewBag.Convenios = _clientesService.GetConvenios();
+            ViewBag.Convenios = _clientesService.GetAllConvenios();
             ViewBag.Error = "";
 
             return View();
@@ -32,7 +33,7 @@ namespace CadastroDePacientesBe3.Controllers
         public IActionResult Create(Clientes client)
         {
             ViewBag.States = GetStates();
-            ViewBag.Convenios = _clientesService.GetConvenios();
+            ViewBag.Convenios = _clientesService.GetAllConvenios();
 
             if (ModelState.IsValid)
             {
@@ -64,6 +65,24 @@ namespace CadastroDePacientesBe3.Controllers
             return View(list);
         }
 
+
+        [HttpPost]
+        public IActionResult List(string search)
+        {
+            List<Clientes> list;
+
+            if (String.IsNullOrEmpty(search))
+            {
+                list = _clientesService.GetAllClients();
+            }
+            else
+            {
+                 list = _clientesService.GetAllClientsBySearch(search);
+            }
+
+            return View(list);
+        }
+
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -73,7 +92,7 @@ namespace CadastroDePacientesBe3.Controllers
             }
 
             ViewBag.States = GetStates();
-            ViewBag.Convenios = _clientesService.GetConvenios();
+            ViewBag.Convenios = _clientesService.GetAllConvenios();
             ViewBag.Error = "";
 
             var client = _clientesService.GetClient(id);
@@ -91,6 +110,26 @@ namespace CadastroDePacientesBe3.Controllers
             }
 
             return View(client);
+        }
+
+        [HttpGet]
+        public IActionResult ToView(int? id)
+        { 
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var client = _clientesService.GetClient(id);
+            var healthInsurence = _clientesService.GetConvenioById(client.IdConvenio);
+
+            var patient = new Paciente() 
+            { 
+                Cliente = client, 
+                Convenio = healthInsurence 
+            };
+
+            return View(patient);
         }
 
 

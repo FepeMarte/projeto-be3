@@ -4,30 +4,25 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="~/css/MyStyle.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg MainColor navbar-dark" id="#navbarSite">
-        <a class="navbar-brand" asp-action="Index" asp-controller="Questions">
-            <h3 class="MainColor">Cadastro de Pacientes</h3>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="#navbarSite">
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Clientes" asp-action="Create">Cadastrar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Clientes" asp-action="List">Consultar</a>
-                </li>
-            </ul>
-        </div>
+    <nav>
+        <input type="checkbox" id="check" />
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">Cadastro de Pacientes</label>
+        <ul>
+            <li><a asp-controller="Clientes" asp-action="Create">Cadastrar</a></li>
+            <li><a asp-controller="Clientes" asp-action="List">Consultar</a></li>
+        </ul>
     </nav>
+
+
     <div class="container p-5">
 
         <div>
@@ -35,9 +30,6 @@
         </div>
     </div>
 
-    <footer class="rodape">
-        Fepe Marte &copy; @DateTime.Now.Year
-    </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
